@@ -4,6 +4,8 @@
 #include <stdio.h>
 #include <math.h>
 #include <stdlib.h>
+#include <time.h>
+#include <stdlib.h>
 
 int compare(const void* a, const void* b) {
   if (*(int*)a > *(int*)b)
@@ -737,6 +739,18 @@ int smithyFunc(int currentPlayer, struct gameState *state, int handPos){
   return 0;
 }
 
+int greatHallFunc(int currentPlayer, struct gameState *state, int handPos) {
+  //+1 Card
+  drawCard(currentPlayer, state);
+
+  //+1 Actions
+  state->numActions++;
+
+  //discard card from hand
+  discardCard(handPos, currentPlayer, state, 0);
+  return 0;
+}
+
 int adventurerFunc(int currentPlayer, struct gameState *state, int handPos){
   int z = 0;
   int drawntreasure=0;
@@ -978,14 +992,15 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
       return 0;
 
     case great_hall:
-      //+1 Card
+      greatHallFunc(currentPlayer, state, handPos);
+      /*//+1 Card
       drawCard(currentPlayer, state);
 
       //+1 Actions
       state->numActions++;
 
       //discard card from hand
-      discardCard(handPos, currentPlayer, state, 0);
+      discardCard(handPos, currentPlayer, state, 0); */
       return 0;
 
     case minion:
