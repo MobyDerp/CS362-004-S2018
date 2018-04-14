@@ -52,7 +52,6 @@ int initializeGame(int numPlayers, int kingdomCards[10], int randomSeed,
   PutSeed((long)randomSeed);
 
 
-
   //check number of players
   if (numPlayers > MAX_PLAYERS || numPlayers < 2)
     {
@@ -660,8 +659,8 @@ int ambassadorFunc(int currentPlayer, int choice1, int choice2, struct gameState
   {
     return -1;
   }
-
-  if (choice1 == handPos)
+  //make choice1 >= handPos instead of choice1 == handPos
+  if (choice1 >= handPos)
   {
     return -1;
   }
@@ -673,7 +672,8 @@ int ambassadorFunc(int currentPlayer, int choice1, int choice2, struct gameState
       j++;
     }
   }
-  if (j < choice2)
+  // made j <=choice2 instead of j < choice;
+  if (j <= choice2)
   {
     return -1;
   }
@@ -720,25 +720,27 @@ int councilFunc(int currentPlayer, struct gameState *state){
   }
 
   //+1 Buy
+  //made this increment by 2 instead of 1.
+  state->numBuys++;
   state->numBuys++;
 
-  //Each other player draws a card
+  //Each other player draws a card drawCard(1, state)
   for (i = 0; i < state->numPlayers; i++)
   {
     if ( i != currentPlayer )
     {
-      drawCard(i, state);
+      drawCard(0, state);
     }
   }
   return 0;
 }
 
 int smithyFunc(int currentPlayer, struct gameState *state, int handPos){
-  //+3 Cards
+  //+4 Cards instead of 3
   int i;
-  for (i = 0; i < 3; i++)
+  for (i = 0; i < 4; i++)
   {
-  drawCard(currentPlayer, state);
+    drawCard(currentPlayer, state);
   }
 
   //discard card from hand
@@ -771,7 +773,7 @@ int adventurerFunc(int currentPlayer, struct gameState *state, int handPos){
     }
     drawCard(currentPlayer, state);
     cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1];//top card of hand is most recently drawn card.
-    if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
+    if (cardDrawn == copper || cardDrawn == silver || cardDrawn != gold)
       drawntreasure++;
     else{
       temphand[z]=cardDrawn;
