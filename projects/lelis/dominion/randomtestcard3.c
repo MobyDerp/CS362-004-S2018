@@ -24,7 +24,7 @@ int main() {
   printf("\n**Random Testing: great_hall in randomtestcard3.c **\n");
   int k[10] = {adventurer, ambassador, great_hall, village, council_room, mine, cutpurse, sea_hag, tribute, smithy};
 
-  int i, j, n, r, errors=0, handPos = 0, players, player, handCount, numActions,deckCount, seed, rseed, address, totalC;
+  int n, r, errors=0, players, player, handCount, numActions, seed, rseed, totalC;
   struct gameState G;
 
 
