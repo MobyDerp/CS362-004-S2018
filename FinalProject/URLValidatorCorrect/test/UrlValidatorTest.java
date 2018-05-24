@@ -101,8 +101,8 @@ protected void setUp() {
          }
          String url = testBuffer.toString();
          boolean result = urlVal.isValid(url);
-         if(result == true)
-        	 System.out.println(url);
+         //if(result == true)
+        	 //System.out.println(url);
          assertEquals(url, expected, result);
          if (printStatus) {
             if (printIndex) {
@@ -139,6 +139,12 @@ protected void setUp() {
    }
 
    static boolean incrementTestPartsIndex(int[] testPartsIndex, Object[] testParts) {
+
+         System.out.print("increments ");
+for (int i = 0; i < 5; i ++) {
+System.out.print(testPartsIndex[i]);
+}
+System.out.println("");
       boolean carry = true;  //add 1 to lowest order part.
       boolean maxIndex = true;
       for (int testPartsIndexIndex = testPartsIndex.length - 1; testPartsIndexIndex >= 0; --testPartsIndexIndex) {
