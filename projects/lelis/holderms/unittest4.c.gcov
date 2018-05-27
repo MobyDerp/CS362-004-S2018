@@ -1,0 +1,37 @@
+        -:    0:Source:unittest4.c
+        -:    0:Graph:unittest4.gcno
+        -:    0:Data:unittest4.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:#include "assert.h"
+        -:    2:#include "dominion.h"
+        -:    3:#include <stdio.h>
+        -:    4:#include "rngs.h"
+        -:    5:#include <stdlib.h>
+        -:    6:
+        -:    7://unit test 4 tests to check next player's turn
+        -:    8://this acts to check if another player is existant
+function main called 1 returned 100% blocks executed 80%
+        -:    9:int main (int argc, char** argv)	{
+        -:   10:  struct gameState G;
+        -:   11:  int a;
+        1:   12:  int k[10] = {adventurer, ambassador, great_hall, village, council_room, mine, cutpurse, sea_hag, tribute, smithy};
+        -:   13:
+        1:   14:	printf ("\n** Unit Test 4: whoseTurn Function **\n");
+        -:   15:
+        1:   16:	printf("\nNote: Run Test 4 times since test is set to 5 players\n");
+        1:   17:	printf("Check to see if other 4 players still have legal targets\n");
+       10:   18:  for (int x = 2 ; x < 6 ; ++x)	{
+branch  0 taken 80%
+branch  1 taken 20%
+        4:   19:      a = initializeGame(2, k, 6, &G);
+        4:   20:      a = whoseTurn(&G);
+        8:   21:      assert(a == G.whoseTurn);
+branch  0 taken 0%
+branch  1 taken 100%
+        4:   22:	printf("Test Passed\n");
+        4:   23:	}
+        1:   24:	printf("** End of Unit Test 4: whoseTurn Function **\n");
+        -:   25:
+        1:   26:	return 0;
+        -:   27:}

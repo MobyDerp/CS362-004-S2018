@@ -1,0 +1,35 @@
+        -:    0:Source:cardtest1.c
+        -:    0:Graph:cardtest1.gcno
+        -:    0:Data:cardtest1.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:#include "assert.h"
+        -:    2:#include "dominion.h"
+        -:    3:#include <stdio.h>
+        -:    4:#include "rngs.h"
+        -:    5:#include <stdlib.h>
+        -:    6:
+        -:    7:
+        -:    8:// Unit Test for Adventurer
+        -:    9:int adventurerFunc(int currentPlayer, struct gameState *state, int handPos);
+        -:   10:int initializeGame(int numPlayers, int kingdomCards[10], int randomSeed, struct gameState *state);
+        -:   11:int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState *state, int handPos, int *bonus);
+        -:   12:
+function main called 1 returned 100% blocks executed 66%
+        -:   13:int main (int argc, char** argv) {
+        -:   14:
+        -:   15:  struct gameState G;
+        1:   16:  int choice1 = 0, choice2 = 0, choice3 = 0;
+        1:   17:	printf ("\n**Card Test 1 -- Adventurer**\n");
+        -:   18:
+        1:   19:	int k[10] = {adventurer, ambassador, great_hall, village, council_room, mine, cutpurse, sea_hag, tribute, smithy};
+        -:   20:
+        1:   21:  initializeGame(2, k, 4, &G);
+        -:   22:
+        2:   23:  assert(cardEffect(adventurer, choice1, choice2, choice3, &G, 0, NULL) == 0);
+branch  0 taken 0%
+branch  1 taken 100%
+        1:   24:  printf("Adventurer test passed\n");
+        1:   25:	printf ("**Card Test 1 Ends**\n");
+        -:   26:
+        1:   27:}

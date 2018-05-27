@@ -1,0 +1,47 @@
+        -:    0:Source:cardtest2.c
+        -:    0:Graph:cardtest2.gcno
+        -:    0:Data:cardtest2.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:#include "assert.h"
+        -:    2:#include "dominion.h"
+        -:    3:#include <stdio.h>
+        -:    4:#include "rngs.h"
+        -:    5:#include <stdlib.h>
+        -:    6:
+        -:    7:// UnitTest for smithy
+        -:    8:int initializeGame(int numPlayers, int kingdomCards[10], int randomSeed, struct gameState *state);
+        -:    9:int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState *state, int handPos, int *bonus);
+        -:   10:
+function main called 1 returned 100% blocks executed 80%
+        -:   11:int main (int argc, char** argv) {
+        -:   12:
+        -:   13:  struct gameState G;
+        1:   14:	int player = 0;
+        -:   15:	int prev_Count;
+        1:   16:	printf ("\n**Card Test 2 -- Smithy**\n");
+        -:   17:
+        1:   18:	int k[10] = {adventurer, ambassador, great_hall, village, council_room, mine, cutpurse, sea_hag, tribute, smithy};
+        -:   19:
+        -:   20:
+        1:   21:  initializeGame(2, k, 2, &G);
+        -:   22:
+        -:   23:	// store old action count
+        1:   24:	prev_Count = G.handCount[player];
+        -:   25:
+        1:   26:  cardEffect(smithy, 0, 0, 0, &G, 0, NULL);
+        -:   27:  //expect #cards to be +3 but then you disgard 1
+        -:   28:	//assert(G.handCount[player] == prev_Count + 2);
+        1:   29:  if (G.handCount[player] == prev_Count + 2) {
+branch  0 taken 100%
+branch  1 taken 0%
+        1:   30:    printf("Smithy test passed\n");
+        1:   31:  } else {
+    #####:   32:    printf("Smithy test FAILED; expect cards to be +3\n");
+        -:   33:  }
+        -:   34:
+        1:   35:	printf ("**Card Test 2 Ends**\n");
+        -:   36:
+        1:   37:  return 0;
+        -:   38:
+        -:   39:}
